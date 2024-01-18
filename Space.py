@@ -61,8 +61,8 @@ player_img = pygame.image.load("space-ship.png")
 player_x_change = 0
 
 # Fuente para la pantalla de Game Over.
-go_font = pygame.font.Font("score_text.ttf", 64)
-go_x = 200
+go_font = pygame.font.Font("score_text.ttf", 80)
+go_x = 215
 go_y = 250
 
 # Lista de parámetros para múltiples enemigos.
@@ -106,9 +106,9 @@ def is_collision (enemy_x, enemy_y, bullet_x, bullet_y):
         return False
 
 # Función de Game Over.
-def game_over(x, y):
+def game_over():
     go_text = go_font.render("GAME OVER", True, (255, 255, 255))
-    screen.blit(go_text, (x, y))
+    screen.blit(go_text, (go_x, go_y))
 
 # Game loop: para correr y retener el videojuego.
 running = True
@@ -150,14 +150,13 @@ while running:
     elif player_x >= 736:
         player_x = 736
 
-# límites/generación del enemigo.
+# Límites/generación del enemigo.
     for item in range(number_enemies):
-        if enemy_y[item] > 440:
+        if enemy_y[item] > 445:
             for j in range(number_enemies):
                 enemy_y[j] = 2000
-                game_over(go_x, go_y)
-                
-                break
+            game_over()
+            break
 
         enemy_x[item] += enemy_x_change[item]
 
@@ -165,7 +164,7 @@ while running:
             enemy_x_change[item] = 0.65
             enemy_y[item] += enemy_y_change[item]
         
-        elif enemy_x[item] >= 736:
+        elif enemy_x[item] >= 742:
             enemy_x_change[item] = -1
             enemy_y[item] += enemy_y_change[item]
 
@@ -179,10 +178,9 @@ while running:
             enemy_x[item] = random.randint(0, 735)
             enemy_y[item] = random.randint(50, 150)
             explosion_sound.play()
-            explosion_sound.set_volume(0.2)
+            explosion_sound.set_volume(0.25)
         
         enemy(enemy_x[item], enemy_y[item])
-
 
 # Balas/disparo posicionamiento y llamado al Game Loop.
     if bullet_y <= 0:
@@ -196,5 +194,5 @@ while running:
     show_score(score_x, score_y)
 
     player(player_x, player_y)
-
+    
     pygame.display.update()
