@@ -65,8 +65,8 @@ Descarga directamente como archivo `.ZIP` desde GitHub.
 Alternativamente, puedes clonar el repositorio con Git:
 
 ```bash
-> git clone https://github.com/tu_usuario/space-invaders-the-basics.git
-> cd space-invaders-the-basics
+git clone https://github.com/tu_usuario/space-invaders-the-basics.git
+cd space-invaders-the-basics
 ```
 
 ### Ejecución del juego
